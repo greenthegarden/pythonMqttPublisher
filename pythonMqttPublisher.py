@@ -124,7 +124,7 @@ def bmp180measurement() :
 	up = ((msb << 16) + (lsb << 8) + xsb) >> (8 - oversampling)
 
 	# Calculating temperature...
-	x1 = ((ut - ac6) * ac5) >> 15
+	x1 = int((ut - ac6) * ac5) >> 15
 	x2 = (mc << 11) / (x1 + md)
 	b5 = x1 + x2
 	t = int(b5 + 8) >> 4
@@ -132,25 +132,25 @@ def bmp180measurement() :
 	# Calculating pressure...
 	b6 = b5 - 4000
 	b62 = int(b6 * b6) >> 12
-	x1 = (b2 * b62) >> 11
-	x2 = ac2 * b6 >> 11
+	x1 = int(b2 * b62) >> 11
+	x2 = int(ac2 * b6) >> 11
 	x3 = x1 + x2
-	b3 = (((ac1 * 4 + x3) << oversampling) + 2) >> 2
+	b3 = int(((ac1 * 4 + x3) << oversampling) + 2) >> 2
 
-	x1 = ac3 * b6 >> 13
-	x2 = (b1 * b62) >> 16
-	x3 = ((x1 + x2) + 2) >> 2
-	b4 = (ac4 * (x3 + 32768)) >> 15
+	x1 = int(ac3 * b6) >> 13
+	x2 = int(b1 * b62) >> 16
+	x3 = int((x1 + x2) + 2) >> 2
+	b4 = int(ac4 * (x3 + 32768)) >> 15
 	b7 = (up - b3) * (50000 >> oversampling)
 
 	p = (b7 * 2) / b4
 	#p = (b7 / b4) * 2
 
 	x1 = (p >> 8) * (p >> 8)
-	x1 = (x1 * 3038) >> 16
+	x1 = int(x1 * 3038) >> 16
 
-	x2 = (-7357 * p) >> 16
-	p = p + ((x1 + x2 + 3791) >> 4)
+	x2 = int(-7357 * p) >> 16
+	p = p + int((x1 + x2 + 3791) >> 4)
 
 	print("Temperature:", t/10.0, "C")
 	print("Pressure:", p / 100.0, "hPa")
@@ -189,11 +189,11 @@ def tidyupAndExit() :
 from threading import Timer
 
 def main() :
-	try :
-		#t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
-		t = Timer(float(config['PUBLISH_INTERVAL']), bmp180measurement)
-		t.start()
-	except KeyboardInterrupt :      #Triggered by pressing Ctrl+C
-		tidyupAndExit()
+	bmp180measurement()
+	# try :
+	# 	t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
+	# 	t.start()
+	# except KeyboardInterrupt :      #Triggered by pressing Ctrl+C
+	# 	tidyupAndExit()
 
 if __name__ == "__main__" : main()
