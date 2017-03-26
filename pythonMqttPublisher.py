@@ -165,7 +165,8 @@ import json
 def publish_measurements() :
 	measurement = bmp180measurement()
 	m = {'type': 'bmp180', 'temperature' : measurement.temperature, 'humidity' : measurement.pressure}
-	client.publish("sensor/bmp180/measurement", json.dumps(m))
+	print(json.dumps(m))
+	client.publish("sensor/berryimu/measurements", json.dumps(m))
 
 
 #---------------------------------------------------------------------------------------

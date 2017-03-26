@@ -1,11 +1,16 @@
+#!/usr/bin/env python
+
+
 # config file creator
 
+
 from configobj import ConfigObj
+
+
 config = ConfigObj()
 config.filename = 'pythonMqttPublisher.cfg'
 
 
-# mqtt configuration
 mqtt_configuration = {
 	'MQTT_BROKER_IP'           : "192.168.1.52",
 	'MQTT_BROKER_PORT'         : "1883",
