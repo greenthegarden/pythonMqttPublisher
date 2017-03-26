@@ -131,7 +131,7 @@ def bmp180measurement() :
 
 	# Calculating pressure...
 	b6 = b5 - 4000
-	b62 = b6 * b6 >> 12
+	b62 = int(b6 * b6) >> 12
 	x1 = (b2 * b62) >> 11
 	x2 = ac2 * b6 >> 11
 	x3 = x1 + x2
@@ -190,7 +190,8 @@ from threading import Timer
 
 def main() :
 	try :
-		t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
+		#t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
+		t = Timer(float(config['PUBLISH_INTERVAL']), bmp180measurement)
 		t.start()
 	except KeyboardInterrupt :      #Triggered by pressing Ctrl+C
 		tidyupAndExit()
