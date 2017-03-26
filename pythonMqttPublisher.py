@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #---------------------------------------------------------------------------------------
 # Load configuration values
@@ -164,19 +164,7 @@ def bmp180measurement() :
 #
 #---------------------------------------------------------------------------------------
 
-import json
-
-def publish_measurements() :
-	measurement = bmp180measurement()
-	m = {'type': 'bmp180', 'temperature' : measurement.temperature, 'humidity' : measurement.pressure}
-	print(json.dumps(m))
-	client.publish("sensor/berryimu/measurements", json.dumps(m))
-
-
-#---------------------------------------------------------------------------------------
-# Main program methods
-#
-#---------------------------------------------------------------------------------------
+from threading import Timer
 
 def tidyupAndExit() :
 	t.cancel()
@@ -186,14 +174,31 @@ def tidyupAndExit() :
 	print("Bye")
 	exit(0)
 
-from threading import Timer
+import json
 
-#def main() :
-#	while True :
-try :
-	t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
-	t.start()
-except KeyboardInterrupt :      #Triggered by pressing Ctrl+C
-	tidyupAndExit()
+def publish_measurements() :
+	try :
+		measurement = bmp180measurement()
+		m = {'type': 'bmp180', 'temperature' : measurement.temperature, 'humidity' : measurement.pressure}
+		print(json.dumps(m))
+		client.publish("sensor/berryimu/measurements", json.dumps(m))
+		t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
+		t.start()
+	except KeyboardInterrupt :
+		tidyupAndExit()
 
-#if __name__ == "__main__" : main()
+
+#---------------------------------------------------------------------------------------
+# Main program methods
+#
+#---------------------------------------------------------------------------------------
+
+
+def main() :
+	try :
+		t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
+		t.start()
+	except KeyboardInterrupt :      #Triggered by pressing Ctrl+C
+		tidyupAndExit()
+
+if __name__ == "__main__" : main()

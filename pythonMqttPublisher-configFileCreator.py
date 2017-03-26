@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 
 # config file creator
@@ -18,7 +18,8 @@ mqtt_configuration = {
 	}
 config['mqtt_configuration'] = mqtt_configuration
 
-config['PUBLISH_INTERVAL'] = 15.0
+# interval in seconds
+config['PUBLISH_INTERVAL'] = 300
 
 
 config.write()
