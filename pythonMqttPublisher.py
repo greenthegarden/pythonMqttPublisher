@@ -189,11 +189,10 @@ def tidyupAndExit() :
 from threading import Timer
 
 def main() :
-	bmp180measurement()
-	# try :
-	# 	t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
-	# 	t.start()
-	# except KeyboardInterrupt :      #Triggered by pressing Ctrl+C
-	# 	tidyupAndExit()
+	try :
+		t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
+		t.start()
+	except KeyboardInterrupt :      #Triggered by pressing Ctrl+C
+		tidyupAndExit()
 
 if __name__ == "__main__" : main()
