@@ -72,7 +72,7 @@ Measurement = collections.namedtuple('Measurement', 'temperature pressure')
 #
 #---------------------------------------------------------------------------------------
 
-from smbus import SMBus
+from smbus2 import SMBus
 from time import sleep
 from ctypes import c_short
 
