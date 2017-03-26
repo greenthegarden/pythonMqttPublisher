@@ -94,6 +94,10 @@ def bmp180measurement() :
 	(chip_id, version) = bus.read_i2c_block_data(addr, 0xD0, 2)
 	print("Chip Id:", chip_id, "Version:", version)
 
+	print("Reading calibration data...")
+	# Read whole calibration EEPROM data
+	cal = bus.read_i2c_block_data(addr, 0xAA, 22)
+
 	# Convert byte data to word values
 	ac1 = get_short(cal, 0)
 	ac2 = get_short(cal, 2)
