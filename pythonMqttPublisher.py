@@ -143,7 +143,7 @@ def bmp180measurement() :
 	b4 = int(ac4 * (x3 + 32768)) >> 15
 	b7 = (up - b3) * (50000 >> oversampling)
 
-	p = (b7 * 2) / b4
+	p = int((b7 * 2) / b4)
 	#p = (b7 / b4) * 2
 
 	x1 = (p >> 8) * (p >> 8)
