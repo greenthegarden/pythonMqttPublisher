@@ -92,7 +92,7 @@ def get_ushort(data, index):
 def bmp180measurement() :
 
 	(chip_id, version) = bus.read_i2c_block_data(addr, 0xD0, 2)
-	print "Chip Id:", chip_id, "Version:", version
+	print("Chip Id:", chip_id, "Version:", version)
 
 	# Convert byte data to word values
 	ac1 = get_short(cal, 0)
@@ -148,8 +148,8 @@ def bmp180measurement() :
 	x2 = (-7357 * p) >> 16
 	p = p + ((x1 + x2 + 3791) >> 4)
 
-	print "Temperature:", t/10.0, "C"
-	print "Pressure:", p / 100.0, "hPa"
+	print("Temperature:", t/10.0, "C")
+	print("Pressure:", p / 100.0, "hPa")
 
 	measurement = Measurement(temperature=t/10.0, pressure=p/100.0)
 	return(measurement)
