@@ -127,7 +127,7 @@ def bmp180measurement() :
 	x1 = ((ut - ac6) * ac5) >> 15
 	x2 = (mc << 11) / (x1 + md)
 	b5 = x1 + x2
-	t = (b5 + 8) >> 4
+	t = int(b5 + 8) >> 4
 
 	# Calculating pressure...
 	b6 = b5 - 4000
