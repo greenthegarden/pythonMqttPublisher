@@ -179,7 +179,7 @@ import json
 def publish_measurements() :
 	try :
 		measurement = bmp180measurement()
-		m = {'type': 'bmp180', 'temperature' : measurement.temperature, 'humidity' : measurement.pressure}
+		m = {'type': 'bmp180', 'temperature' : measurement.temperature, 'pressure' : measurement.pressure}
 		print(json.dumps(m))
 		client.publish("sensor/berryimu/measurements", json.dumps(m))
 		t = Timer(float(config['PUBLISH_INTERVAL']), publish_measurements)
