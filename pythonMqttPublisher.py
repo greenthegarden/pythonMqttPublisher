@@ -7,7 +7,7 @@
 
 # see https://wiki.python.org/moin/ConfigParserShootout
 from configobj import ConfigObj
-config = ConfigObj('pythonMqttPublisher.cfg')
+config = ConfigObj('/home/pi/pythonMqttPublisher/pythonMqttPublisher.cfg')
 
 print("{0}".format("Python MQTT Publisher"))
 

@@ -16,7 +16,7 @@
 # Change the next 3 lines to suit where you install your script and what you want to call it
 #DIR=/usr/local/bin/myservice
 DIR=/home/pi/pythonMqttPublisher
-DAEMON=$DIR/pythonMqttPublisher.sh
+DAEMON=$DIR/pythonMqttPublisher.py
 DAEMON_NAME=pythonMqttPublisher
 
 # Add any command line options for your daemon here
