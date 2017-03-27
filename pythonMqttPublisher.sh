@@ -4,7 +4,7 @@
 # http://blog.scphillips.com/posts/2013/07/getting-a-python-script-to-run-in-the-background-as-a-service-on-boot/
 
 ### BEGIN INIT INFO
-# Provides:          weatherPublisher
+# Provides:          pythonMqttPublisher
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
