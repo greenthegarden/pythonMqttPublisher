@@ -27,7 +27,7 @@ DAEMON_OPTS=""
 DAEMON_USER=pi
 
 # The process ID of the script when it runs is stored here:
-PIDFILE=/var/run/$DAEMON_NAME.pid
+PIDFILE=$DIR/$DAEMON_NAME.pid
 
 . /lib/lsb/init-functions
 
