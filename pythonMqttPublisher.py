@@ -48,6 +48,9 @@ client.on_disconnect = on_disconnect
 # Uncomment to enable debug messages
 #client.on_log       = on_log
 
+client.username_pw_set(config['mqtt_configuration']['MQTT_USERNAME'],
+config['mqtt_configuration']['MQTT_PASSWORD'])
+
 client.connect(
                config['mqtt_configuration']['MQTT_BROKER_IP'],
                int(config['mqtt_configuration']['MQTT_BROKER_PORT']),

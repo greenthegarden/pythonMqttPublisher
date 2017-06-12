@@ -12,6 +12,8 @@ config.filename = 'pythonMqttPublisher.cfg'
 
 
 mqtt_configuration = {
+	'MQTT_USERNAME'            : "emonpi",
+	'MQTT_PASSWORD'            : "emonpimqtt2016",
 	'MQTT_BROKER_IP'           : "192.168.1.52",
 	'MQTT_BROKER_PORT'         : "1883",
 	'MQTT_BROKER_PORT_TIMEOUT' : "60",
